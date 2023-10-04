@@ -63,13 +63,14 @@ export const NavSheet = () => {
                     <SheetDescription>
                         <Button variant="link" >
                             <BsFillTelephoneForwardFill className="mr-2 h-4 w-4" />
-                            Call Us Now</Button>
+                            Call Us Now
+                        </Button>
                     </SheetDescription>
                 </SheetHeader>
                 <nav className="w-full self-center flex flex-col items-center justify-center gap-4 py-4 text-center">
                     {
                         navlinks.map((link) => (
-                            <Link className="w-full  text-lg flex items-center align-middle gap-2" key={link.name} href={link.tag}>
+                            <Link className="w-full font-bold bg-accent hover:text-secondary-foreground hover:shadow-lg focus:bg-cyan-300 active:bg-cyan-300 rounded-lg p-2 text-lg flex items-center align-middle gap-2 " key={link.name} href={link.tag}>
                                 {link.Icon}
 
                                 {link.name}
