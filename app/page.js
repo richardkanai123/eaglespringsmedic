@@ -44,8 +44,8 @@ export default function Home() {
           <Image src={'/monitor.jpg'} fill objectFit='cover' objectPosition='center' alt='monitor loading' className='w-full md:rounded-xl overflow-hidden' />
         </section>
         <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
-          <h2 className='text-xl md:text-3xl font-bold leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About Eagle Springs Medical Center</h2>
-          <p className='md:text-lg font-medium md:leading-snug'>
+          <h2 className='text-2xl md:text-4xl text-center w-[75%] font-bold leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About Eagle Springs Medical Center</h2>
+          <p className='md:text-xl font-medium md:leading-snug'>
             As a General medical center, ESMC hosts several disciplines for adults and children. Most medical disciplines and technologies, from diagnosis including lab, radiology, to rehabilitation, are integrated aiming at serving the best care even in situation of emergency or high complexity. Medical scientists and nurse staff have skills to work together for maximum results in the medical care.
           </p>
         </section>
