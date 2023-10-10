@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ModeToggle } from '@/components/modeToggleBtn'
 import Image from 'next/image'
 import { NavSheet } from '@/components/NavSheet'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='w-screen max-w-7xl h-screen max-h-fit mx-auto my-0 align-middle '>
+      <body className='w-screen max-w-[1440px] h-screen max-h-fit mx-auto my-0 align-middle '>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -38,9 +39,11 @@ export default function RootLayout({ children }) {
             </div>
           </header>
 
-          <main className='w-full mx-auto '>
+          <main className='w-full mx-auto mb-2 '>
             {children}
           </main>
+
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

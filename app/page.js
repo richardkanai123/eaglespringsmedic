@@ -25,12 +25,12 @@ export default function Home() {
 
 
           <aside className='w-full p-2 flex items-center align-middle justify-center gap-4 mt-2'>
-            <Button className='hover:bg-accent-foreground text-lg font-semibold ring-0 outline-none' asChild>
+            <Button className='bg-lime-600 text-lg font-semibold ring-0 border-0 outline-none' asChild>
               <Link href="/booking">Book Now!</Link>
             </Button>
 
 
-            <Button variant='link' asChild >
+            <Button variant='link' className=' text-base font-semibold ring-0 border-0 outline-none' asChild >
               <Link href="/services">Our Services</Link>
             </Button>
           </aside>
@@ -44,28 +44,30 @@ export default function Home() {
           <Image src={'/monitor.jpg'} fill objectFit='cover' objectPosition='center' alt='monitor loading' className='w-full md:rounded-xl overflow-hidden' />
         </section>
         <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
-          <h2 className='text-3xl md:text-4xl text-center w-[75%] font-bold leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About Eagle Springs Medical Center</h2>
-          <p className='text-xl  md:text-xl font-light md:leading-snug text-justify leading-5 p-1'>
-            As a General medical center, ESMC hosts several disciplines for adults and children. Most medical disciplines and technologies, from diagnosis including lab, radiology, to rehabilitation, are integrated aiming at serving the best care even in situation of emergency or high complexity. Medical scientists and nurse staff have skills to work together for maximum results in the medical care.
+          <h2 className='text-2xl md:text-4xl text-center w-[75%] font-bold md:leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About Eagle Springs Medical Center</h2>
+          <p className='text-xl  md:text-xl font-[400] md:leading-snug text-justify leading-5 p-3'>
+            At Eagle Springs Medical Center, we are more than just a medical center; we are your beacon of hope and health in the heart of Gataka town. Our commitment to your well-being extends across all stages of life, from infancy to adulthood.
           </p>
         </section>
 
       </div>
 
 
-      <div className="flex w-full p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row h-[50vh] ">
+      <div className="flex w-full p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row h-[50vh]">
 
         <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
           <h2 className='text-xl md:text-3xl font-bold leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>
-            Location
+            ...More...
           </h2>
-          <p className='md:text-lg font-medium md:leading-snug'>
-            We are located along Gataka road in Gataka town at Karen view estate between Karen, Ongata Rongai and Ngong hills.
+          <p className='text-xl font-[400] md:leading-snug text-justify leading-5 p-3'>
+            We are more than just a medical center; we are your beacon of hope and health in the heart of Gataka town. Our commitment to your well-being extends across all stages of life, from infancy to adulthood. Located along the picturesque Gataka road in Karen View Estate, we are conveniently positioned to serve the communities of Karen, Ongata Rongai, and Ngong Hills.
           </p>
         </section>
 
         <section className='h-full w-full md:w-auto  flex-1 relative object-cover '>
-          <p>Location pin to be added here</p>
+          <h2 className='text-xl md:text-3xl font-bold  bg-gradient-to-r from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>
+            Location
+          </h2>
         </section>
 
       </div>
