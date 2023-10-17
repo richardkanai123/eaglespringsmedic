@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='w-screen max-w-[1440px] h-screen max-h-fit mx-auto my-0 align-middle '>
+      <body className='w-screen max-w-[1440px] h-screen max-h-fit mx-auto my-0 align-middle overflow-x-hidden '>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
             </div>
           </header>
 
-          <main className='w-full mx-auto mb-2 '>
+          <main className='w-full flex flex-col mx-auto mb-2 '>
             {children}
           </main>
 
