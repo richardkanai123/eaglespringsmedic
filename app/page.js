@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Album, Clock8, Phone } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export default function Home() {
   return (
@@ -86,13 +87,13 @@ export default function Home() {
 
       </div>
 
-      <div className="w-full flex p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row">
-        <Card>
+      <div className="w-full min-h-[40vh] max-h-fit flex p-4 justify-around gap-4 align-middle items-center flex-col md:flex-row ">
+        <Card className={cn('flex-1')}>
           <CardHeader>
             <CardTitle >
               <Album className='text-sky-900 dark:text-lime-400 ' size={48} strokeWidth={3} />
             </CardTitle>
-            <CardDescription>Book Online</CardDescription>
+            <CardDescription className='text-xl'>Book Online</CardDescription>
           </CardHeader>
           <CardContent>
             <p>Book an appointment with us by a click of button on our website.</p>
@@ -103,12 +104,12 @@ export default function Home() {
             </Button>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className={cn('flex-1')}>
           <CardHeader>
             <CardTitle>
               <Phone className='text-sky-900 dark:text-lime-400 ' size={48} strokeWidth={3} />
             </CardTitle>
-            <CardDescription>Call Us Now!</CardDescription>
+            <CardDescription className='text-xl'>Call Us Now!</CardDescription>
           </CardHeader>
           <CardContent>
             <p>Get on a quick call with us: <span className='text-2xl font-black'>
@@ -123,18 +124,26 @@ export default function Home() {
             </Button>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className={cn('flex-1')}>
           <CardHeader>
             <CardTitle>
               <Clock8 className='text-sky-900 dark:text-lime-400' size={48} strokeWidth={3} />
             </CardTitle>
-            <CardDescription>Working Hours!</CardDescription>
+            <CardDescription className='text-xl'>Working Hours!</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Card Content</p>
+            <p>Visit our clinic for any of our services</p>
+            <ul className='flex flex-col align-middle justify-center'>
+              <li className='border-b'>Mon-Fri: 8:00am - 11:00pm</li>
+              <li className='border-b'>Sat-Sun: 10:00am - 7:00pm</li>
+            </ul>
           </CardContent>
           <CardFooter>
-            <p>Card Footer</p>
+            <Button asChild variant='primary' className='bg-lime-600 ring-0 outline-none hover:opacity-80'>
+              <a href='tel:2547194844555' className='flex items-center align-middle' >
+                Open Location
+              </a>
+            </Button>
           </CardFooter>
         </Card>
 
