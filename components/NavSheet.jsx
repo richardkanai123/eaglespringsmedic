@@ -15,6 +15,7 @@ import Link from "next/link"
 import { BsFillTelephoneForwardFill } from 'react-icons/bs'
 import { FcHome, FcServices, FcBookmark, FcContacts } from 'react-icons/fc'
 import { FaBlog } from 'react-icons/fa'
+import { cn } from "@/lib/utils"
 
 export const NavSheet = () => {
 
@@ -47,8 +48,8 @@ export const NavSheet = () => {
     ]
 
     return (
-        <Sheet>
-            <SheetTrigger asChild>
+        <Sheet >
+            <SheetTrigger asChild className={cn('lg:hidden')}>
                 <Button variant="ghost" size="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

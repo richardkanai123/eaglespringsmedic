@@ -20,7 +20,7 @@ const Footer = () => {
                     <h2 className='text-lg font-bold'>Eagle Springs Medical Center</h2>
                     <p className='text-xs italic text-center font-medium '>Your Optimal, Compassionate and Personalized Health Partner.</p>
 
-                    <div className="w-full flex justify-start gap-3 align-middle">
+                    <div className="w-full flex justify-center gap-3 align-middle">
                         <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
                             <span className='text-sky-600 text-3xl'><BsFacebook /></span>
                         </a>
@@ -35,7 +35,7 @@ const Footer = () => {
 
                 <div className="flex-1 flex flex-col items-center justify-center align-middle gap-2 ">
                     <h2 className='w-full text-lg font-bold text-center underline'>Services</h2>
-                    <section className="w-full flex align-middle justify-around font-medium  items-center p-1">
+                    <section className="w-full flex align-middle justify-evenly font-medium  items-center p-1">
                         <aside>
                             <p>Out-Patient</p>
                             <p>In-Patient</p>
@@ -61,11 +61,21 @@ const Footer = () => {
                 <div className="flex-1 flex flex-col items-center gap-2 align-middle">
                     <h2 className='w-full text-lg font-light text-center underline'>Quick Links</h2>
                     <section className="w-full text-center flex flex-col items-center align-middle">
-                        <Link className='text-base hover:italic hover:underline' href={'/'}>Home</Link>
-                        <Link className='text-base hover:italic hover:underline' href={'/booking'}>Book Now</Link>
-                        <Link className='text-base hover:italic hover:underline' href={'/blog'}>Our Blogs</Link>
-                        <Link className='text-base hover:italic hover:underline' href={'/services'}>Our Services</Link>
-                        <Link className='text-base hover:italic hover:underline' href={'/contact'}>Contact us</Link>
+                        <Link className='text-base hover:italic hover:underline' href={'/'}>
+                            Home
+                        </Link>
+                        <Link className='text-base hover:italic hover:underline' href={'/booking'}>
+                            Book Now
+                        </Link>
+                        <Link className='text-base hover:italic hover:underline' href={'/services'}>
+                            Our Services
+                        </Link>
+                        <Link className='text-base hover:italic hover:underline' href={'/blog'}>
+                            Our Blog
+                        </Link>
+                        <Link className='text-base hover:italic hover:underline' href={'/contact'}>
+                            Contact us
+                        </Link>
                     </section>
                 </div>
             </section>

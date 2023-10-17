@@ -24,19 +24,19 @@ export default function Home() {
         }}
         className='bg-blend-overlay bg-opacity-95 flex flex-col items-center w-full h-[80vh] relative object-cover mb-8'>
         <section style={{
-          backgroundColor: 'rgba(0,0,0,0.7)'
+          backgroundColor: 'rgba(0,0,0,0.45)'
         }} className='absolute top-0 left-0 w-full h-full  bg-blend-overlay flex flex-col items-center align-middle justify-center gap-3'>
           <h1 className='text-5xl w-full text-center  font-extrabold bg-gradient-to-r from-sky-800 via-cyan-400 to-green-300 text-transparent bg-clip-text leading-snug md:leading-loose outline-none '>
             Eagle Springs Medical Center
           </h1>
 
-          <p className='text-xl text-primary p-1  font-semibold outline-none text-center'>
+          <p className='text-xl text-white  font-semibold outline-none text-center'>
             <AnimatedText />
           </p>
 
 
           <aside className='w-full p-2 flex items-center align-middle justify-center gap-4 mt-2'>
-            <Button className='bg-lime-600 text-lg font-semibold ring-0 border-0 outline-none' asChild>
+            <Button className='bg-lime-600 hover:bg-lime-950 text-base font-semibold ring-0 border-0 outline-none' asChild>
               <Link href="/booking">Book Now!</Link>
             </Button>
 
@@ -146,6 +146,9 @@ export default function Home() {
             </Button>
           </CardFooter>
         </Card>
+      </div>
+
+      <div className="w-full p-4 flex flex-col md:flex-row items-center justify-around my-2">
 
       </div>
     </>
