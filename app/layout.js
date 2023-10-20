@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { NavSheet } from '@/components/NavSheet'
 import Footer from '@/components/Footer'
 import BigScreenNav from '@/components/BigScreenNav'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,6 +45,8 @@ export default function RootLayout({ children }) {
 
           <main className='w-full flex flex-col mx-auto mb-2 scroll-smooth '>
             {children}
+
+            <Toaster />
           </main>
 
           <Footer />
