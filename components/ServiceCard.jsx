@@ -7,24 +7,28 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-const ServiceCard = ({ title, Description }) => {
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { Button } from './ui/button'
+const ServiceCard = ({ title, Description, Icon }) => {
     return (
-        <div className="flex items-center w-[320px] md:min-w-[350px] overflow-hidden h-[320px] ">
-            <Card>
-                <CardHeader>
-                    <CardTitle>Add icon</CardTitle>
-                    <CardDescription>
-                        <span className='font-bold text-lg'> {title}</span>
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className='text-left text-base'>{Description}</p>
-                </CardContent>
-                <CardFooter>
-                    <p>Card Footer</p>
-                </CardFooter>
-            </Card>
-        </div>
+        <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[320px] hover:shadow-xl dark:shadow-slate-700")}>
+            <CardHeader className={cn("")}>
+                {Icon}
+                <CardDescription>
+                    <span className='font-bold text-lg'> {title}</span>
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p className='text-left text-base'>{Description}</p>
+            </CardContent>
+            <CardFooter className={cn("self-end")} >
+                <Button asChild variant="link">
+                    <Link href="/booking">Book Now</Link>
+                </Button>
+
+            </CardFooter>
+        </Card>
 
     )
 }

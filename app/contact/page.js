@@ -51,10 +51,7 @@ const Contact = () => {
 
         <Form {...form}>
             <form onSubmit={form.handleSubmit((data) => {
-
-
                 console.log(data)
-
                 toast({
                     variant: 'success',
                     title: "Message Sent!",

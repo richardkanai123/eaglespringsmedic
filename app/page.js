@@ -22,7 +22,7 @@ export default function Home() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        className='bg-blend-overlay bg-opacity-95 flex flex-col items-center w-full h-[80vh] relative object-cover mb-8'>
+        className='bg-blend-overlay bg-sky-400 bg-opacity-75 flex flex-col items-center w-full h-[80vh] relative object-cover mb-8'>
         <section style={{
           backgroundColor: 'rgba(0,0,0,0.45)'
         }} className='absolute top-0 left-0 w-full h-full  bg-blend-overlay flex flex-col items-center align-middle justify-center gap-3'>
@@ -49,10 +49,10 @@ export default function Home() {
       </div>
 
 
-      <div className="flex w-full md:p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row h-[70vh] ">
+      <div className="flex w-full md:p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row h-[70vh] max-h-fit">
 
         <section className='h-full w-full md:w-auto  flex-1 relative object-cover object-center  '>
-          <Image src={'/monitor.jpg'} fill objectFit='cover' objectPosition='center' alt='monitor loading' className='w-full md:rounded-xl overflow-hidden md:max-h-80 lg:max-h-fit' />
+          <Image src={'/monitor.jpg'} fill objectFit='cover' alt='monitor loading' className='w-full md:rounded-xl overflow-hidden md:max-h-80 lg:max-h-fit' />
         </section>
         <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
           <h2 className='text-2xl md:text-4xl text-center w-[75%] font-bold md:leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About us</h2>
@@ -66,11 +66,11 @@ export default function Home() {
 
       <div className="flex w-full p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row min-h-[50vh]">
 
-        <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
+        <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-2 gap-2'>
           <h2 className='text-xl md:text-3xl font-bold leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>
             ...More...
           </h2>
-          <p className='text-xl font-[400] md:leading-snug text-justify leading-5 p-3'>
+          <p className='text-xl font-[400] md:leading-snug text-justify leading-5 p-4'>
             We are more than just a medical center; we are your beacon of hope and health in the heart of Gataka town. Our commitment to your well-being extends across all stages of life, from infancy to adulthood. Located along the picturesque Gataka road in Karen View Estate, we are conveniently positioned to serve the communities of Karen, Ongata Rongai, and Ngong Hills.
           </p>
         </section>
@@ -87,8 +87,8 @@ export default function Home() {
 
       </div>
 
-      <div className="w-full min-h-[40vh] max-h-fit flex p-4 justify-around gap-4 align-middle items-center flex-col md:flex-row ">
-        <Card className={cn('flex-1')}>
+      <div className="mt-3 w-full min-h-[40vh] max-h-fit flex p-4 justify-around gap-4 align-middle items-center flex-col md:flex-row border-b">
+        <Card className={cn("w-full md:min:w-[320px] max-w-sm h-[300px]")}>
           <CardHeader>
             <CardTitle >
               <Album className='text-sky-900 dark:text-lime-400 ' size={48} strokeWidth={3} />
@@ -104,7 +104,7 @@ export default function Home() {
             </Button>
           </CardFooter>
         </Card>
-        <Card className={cn('flex-1')}>
+        <Card className={cn("w-full md:min:w-[320px] max-w-sm h-[300px]")}>
           <CardHeader>
             <CardTitle>
               <Phone className='text-sky-900 dark:text-lime-400 ' size={48} strokeWidth={3} />
@@ -124,7 +124,7 @@ export default function Home() {
             </Button>
           </CardFooter>
         </Card>
-        <Card className={cn('flex-1')}>
+        <Card className={cn("w-full md:min:w-[320px] max-w-sm h-[300px]")}>
           <CardHeader>
             <CardTitle>
               <Clock8 className='text-sky-900 dark:text-lime-400' size={48} strokeWidth={3} />
@@ -148,7 +148,19 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="w-full p-4 flex flex-col md:flex-row items-center justify-around my-2">
+      <div className="w-full bg-sky-100 dark:bg-slate-950 p-4 flex flex-col md:flex-row items-center justify-around mt-3 gap-4 min-h-[50vh] max-h-fit">
+        <div className="w-full object-cover object-center flex-1 min-h-[300px] h-fit relative">
+          <Image src='/tester1.jpg' alt='heartbeat image' fill objectFit='cover' />
+        </div>
+        <div className="w-full object-cover flex-1 ">
+          <p className='w-full text-left text-xl md:text-2xl font-semibold'>
+            We health is not just the absence of illness; {`it's`} a state of complete physical, mental, and social well-being. We are dedicated to delivering healthcare that goes beyond the ordinary, striving for excellence in every aspect of your journey with us.
+          </p>
+
+          <Button className='bg-lime-600 mt-3 text-base font-semibold ring-0 border-0 outline-none' asChild >
+            <Link href="/services">Our Services</Link>
+          </Button>
+        </div>
 
       </div>
     </>
