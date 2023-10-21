@@ -154,7 +154,7 @@ export default function Home() {
         </div>
         <div className="w-full object-cover flex-1 ">
           <p className='w-full text-left text-xl md:text-2xl font-semibold'>
-            We health is not just the absence of illness; {`it's`} a state of complete physical, mental, and social well-being. We are dedicated to delivering healthcare that goes beyond the ordinary, striving for excellence in every aspect of your journey with us.
+            We believe health is not just the absence of illness; {`it's`} a state of complete physical, mental, and social well-being. We are dedicated to delivering healthcare that goes beyond the ordinary, striving for excellence in every aspect of your journey with us.
           </p>
 
           <Button className='bg-lime-600 mt-3 text-base font-semibold ring-0 border-0 outline-none' asChild >
