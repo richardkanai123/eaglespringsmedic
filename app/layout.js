@@ -7,6 +7,7 @@ import { NavSheet } from '@/components/NavSheet'
 import Footer from '@/components/Footer'
 import BigScreenNav from '@/components/BigScreenNav'
 import { Toaster } from '@/components/ui/toaster'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,14 +27,16 @@ export default function RootLayout({ children }) {
 
         >
           <header className='w-full flex items-center justify-between py-1 pr-6 align-center shadow-md sticky top-0 left-0 z-40'>
-            <div className="flex gap-2 items-center align-middle">
+            <div className="flex gap-2 items-center align-middle justify-center">
               <Image src="/favicon-removebg.png"
                 height={80}
                 width={75}
                 alt='Logo Loading'
                 priority={true}
               />
-              <h1 className='font-extrabold text-xl md:text-2xl lg:text-3xl bg-gradient-to-r from-sky-800 via-cyan-400 to-green-300 text-transparent bg-clip-text  '>Eagle Springs</h1>
+              <Link href={"/"} className='font-extrabold text-xl md:text-2xl lg:text-3xl bg-gradient-to-r from-sky-800 via-cyan-400 to-green-300 text-transparent bg-clip-text  '>
+                ESMC
+              </Link>
             </div>
 
             <BigScreenNav />
