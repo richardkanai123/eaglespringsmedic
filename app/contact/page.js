@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { BsFacebook } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { BiSolidPhoneCall } from 'react-icons/bi'
-import { useToast } from "@/components/ui/use-toast"
+import { toast } from 'react-toastify'
 
 const formSchema = z.object({
     Name: z.string({
@@ -40,7 +40,15 @@ const formSchema = z.object({
 
 const Contact = () => {
 
-    const { toast } = useToast()
+
+    const NotifySent = () => {
+        toast.success(
+            <div className="w-full p-2">
+                <p className='text-base font-semibold'>Message has been Sent!</p>
+                <p className='text-gray-600 font-light' > We will get back to you soon.</p>
+            </div>
+        )
+    }
 
     const form = useForm({
         resolver: zodResolver(formSchema)
@@ -52,13 +60,7 @@ const Contact = () => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit((data) => {
                 console.log(data)
-                toast({
-                    variant: 'success',
-                    title: "Message Sent!",
-                    description: "Your message was successfully sent!",
-                    location: 'top'
-                })
-
+                NotifySent()
                 form.reset()
 
             })} className="space-y-4 w-full text-base p-3 md:w-[50%] self-center">

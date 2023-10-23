@@ -20,7 +20,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { BsFacebook } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { BiSolidPhoneCall } from 'react-icons/bi'
-import { useToast } from "@/components/ui/use-toast"
 import {
     Select,
     SelectContent,
@@ -36,13 +35,20 @@ import {
 import { Calendar } from "@/components/ui/calendar"
 import { CalendarX2Icon } from 'lucide-react'
 import { addDays, format } from "date-fns"
+import { toast } from 'react-toastify'
 
 
 // zod validation schema
 
 const Booking = () => {
 
-    const { toast } = useToast()
+    const NotifySucess = () => {
+        toast.success(
+            <div className="w-full p-2">
+                <p className='text-base font-semibold'>Booking Successful!</p>
+            </div>
+        )
+    }
 
     const formSchema = z.object({
         Name: z.string({
@@ -135,14 +141,8 @@ const Booking = () => {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit((data) => {
                         console.log(data)
-                        toast({
-                            variant: 'success',
-                            title: "Message Sent!",
-                            description: "Your message was successfully sent!",
-                            location: 'top'
-                        })
-
-                        form.reset()
+                        NotifySucess();
+                        form.resetField()
 
                     })} className="space-y-2 w-full text-base p-3  self-center">
                         <FormField
