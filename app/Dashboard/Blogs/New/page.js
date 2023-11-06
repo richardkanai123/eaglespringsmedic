@@ -1,8 +1,9 @@
+import CreateBlog from '@/components/CreateBlog'
 import React from 'react'
 
 const NewBlogPage = () => {
     return (
-        <div>NewBlogPage</div>
+        <CreateBlog />
     )
 }
 

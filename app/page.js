@@ -112,13 +112,23 @@ export default function Home() {
             <CardDescription className='text-xl'>Call Us Now!</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Get on a quick call with us: <span className='text-2xl font-black'>
-              25479900220000
-            </span></p>
+            <p className='text-md '>Call us:
+              <br />
+              <span className='text-xl  font-medium'>
+                0797894402
+              </span>
+              <br />
+              <span className="text-sm">Or</span>
+              <br />
+
+              <span className='text-lg font-medium'>
+                0786573525
+              </span>
+            </p>
           </CardContent>
           <CardFooter>
             <Button asChild variant='primary' className='bg-lime-600 ring-0 outline-none hover:opacity-80'>
-              <a href='tel:2547194844555' className='flex items-center align-middle' >
+              <a href='tel:+254797894402' className='flex items-center align-middle' >
                 Call Now!
               </a>
             </Button>
@@ -161,7 +171,12 @@ export default function Home() {
             <Link href="/services">Our Services</Link>
           </Button>
         </div>
+      </div>
 
+
+
+      <div className="mt-3 w-full min-h-[40vh] max-h-fit flex p-4 justify-around gap-4 align-middle items-center flex-col md:flex-row border-b">
+        Recent blogs go here
       </div>
     </>
 
