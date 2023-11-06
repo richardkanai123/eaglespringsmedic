@@ -1,7 +1,7 @@
 import React from 'react'
 import CreateBlog from '@/components/CreateBlog'
 
-const NewBlogPage = () => {
+const Page = () => {
     return (
         <>
             <h1>Blogs</h1>
