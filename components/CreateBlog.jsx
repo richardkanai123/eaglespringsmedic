@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { Button } from '@/components/ui/button'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 const CreateBlog = () => {
