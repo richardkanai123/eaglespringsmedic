@@ -1,9 +1,12 @@
-import CreateBlog from '@/components/CreateBlog'
 import React from 'react'
+import CreateBlog from '@/components/CreateBlog'
 
 const NewBlogPage = () => {
     return (
-        <CreateBlog />
+        <>
+            <h1>Blogs</h1>
+            <CreateBlog />
+        </>
     )
 }
 
