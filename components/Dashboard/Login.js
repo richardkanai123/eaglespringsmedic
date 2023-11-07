@@ -76,7 +76,7 @@ const Login = () => {
                         <FormItem>
                             <FormLabel>Your Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter Admin Password" {...field} />
+                                <Input placeholder="Admin Email" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -89,7 +89,7 @@ const Login = () => {
                         <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="Your Name" {...field} />
+                                <Input placeholder="Enter Admin Password" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
