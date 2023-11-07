@@ -50,22 +50,19 @@ const Login = () => {
 
 
     if (user) return (
-        <Button className={cn('max-w-xs')} onClick={async () => await signOut(FireAuth).then(() => toast.info('Admin Signed out'))}>Log out</Button>
+        <Button className={cn('w-full max-w-xs')} onClick={async () => await signOut(FireAuth).then(() => toast.info('Admin Signed out'))}>Log out</Button>
     )
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(async (data) => {
-                console.log(data)
                 const { Email, Password } = data
                 try {
 
                     await signInWithEmailAndPassword(FireAuth, Email, Password)
-                        .then((user) => console.log(user))
                     toast.success("Admin Logged in Successfully")
 
                 } catch (error) {
-                    console.log(error)
                     toast.error(error.message)
                 }
             })} className="space-y-4 w-full text-base p-3 md:w-[50%] self-center">
