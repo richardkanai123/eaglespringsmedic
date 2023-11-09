@@ -37,10 +37,6 @@ const BookingsCard = () => {
         return () => fetchMessages()
     }, [])
 
-
-    if (allBookings) {
-        console.log(allBookings)
-    }
     return (
         <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[250px]")}>
             <CardHeader>

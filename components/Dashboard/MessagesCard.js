@@ -24,7 +24,6 @@ const MessagesCard = () => {
                         setReadMessagesCount(data.filter((item) => (item.status === "read")).length)
                         setUnReadMessagesCount(data.filter((item) => (item.status === "unread")).length)
                         setISLoadingData(false)
-                        console.log(data);
                     }
                     )
             } catch (error) {
@@ -36,10 +35,6 @@ const MessagesCard = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-    if (allMessages) {
-        console.log(allMessages)
-    }
 
     return (
         <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[250px]")}>
