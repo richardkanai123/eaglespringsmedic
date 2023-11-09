@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const BookingsCard = () => {
 
-    const [allBookings, setallBookings] = useState([])
+    const [allBookings, setallBookings] = useState(null)
     const [fetchError, setfetchError] = useState()
     const [isLoadingData, setISLoadingData] = useState(false)
     const [pendingBookingsCount, setPendingBookingsCount] = useState(0)
@@ -26,7 +26,6 @@ const BookingsCard = () => {
                         setPendingBookingsCount(data.filter((item) => (item.status === "pending")).length)
                         setConfirmedBooking(data.filter((item) => (item.status === "confirmed")).length)
                         setISLoadingData(false)
-                        console.log(data);
 
                     }
                     )
@@ -36,7 +35,6 @@ const BookingsCard = () => {
             }
         }
         return () => fetchMessages()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -60,7 +58,7 @@ const BookingsCard = () => {
                 }
 
                 {
-                    !isLoadingData && <h1 className="text-3xl font-bold">Total: {allBookings.length}</h1>
+                    (!isLoadingData && allBookings) && <h1 className="text-3xl font-bold">Total: {allBookings.length}</h1>
                 }
                 <p className="text-lg font-semibold text-lime-800 ">Read: {pendingBookingsCount}</p>
                 <p className="text-lg font-semibold text-yellow-400">Unread: {ConfirmedBooking} </p>

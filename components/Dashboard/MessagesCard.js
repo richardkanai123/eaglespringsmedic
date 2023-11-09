@@ -40,9 +40,6 @@ const MessagesCard = () => {
     if (allMessages) {
         console.log(allMessages)
     }
-    else {
-
-    }
 
     return (
         <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[250px]")}>
