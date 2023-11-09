@@ -26,6 +26,8 @@ const BookingsCard = () => {
                         setPendingBookingsCount(data.filter((item) => (item.status === "pending")).length)
                         setConfirmedBooking(data.filter((item) => (item.status === "confirmed")).length)
                         setISLoadingData(false)
+                        console.log(data);
+
                     }
                     )
             } catch (error) {

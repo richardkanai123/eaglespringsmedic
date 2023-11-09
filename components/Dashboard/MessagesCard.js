@@ -24,6 +24,7 @@ const MessagesCard = () => {
                         setReadMessagesCount(data.filter((item) => (item.status === "read")).length)
                         setUnReadMessagesCount(data.filter((item) => (item.status === "unread")).length)
                         setISLoadingData(false)
+                        console.log(data);
                     }
                     )
             } catch (error) {
@@ -38,6 +39,9 @@ const MessagesCard = () => {
 
     if (allMessages) {
         console.log(allMessages)
+    }
+    else {
+
     }
 
     return (
