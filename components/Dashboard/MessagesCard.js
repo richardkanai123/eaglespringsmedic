@@ -44,7 +44,7 @@ const MessagesCard = () => {
     //     return data
 
     // }
-    const { data, isLoading, error } = useQuery({ queryKey: ['messages1'], queryFn: async () => await fetch('http://localhost:3000/api/messages').then((res) => res.json()), })
+    const { data, isLoading, error } = useQuery({ queryKey: ['messages1'], queryFn: async () => await fetch('/api/messages').then((res) => res.json()), })
 
     if (isLoading) {
 
