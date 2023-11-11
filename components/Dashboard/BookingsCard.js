@@ -15,7 +15,19 @@ const BookingsCard = () => {
 
     if (isLoading) {
 
-        return <p>Loading Booking Data ...</p>
+        return (
+            <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[200px] items-center border-4")}>
+                <CardHeader>
+                    <CardTitle >
+                        Bookings
+                    </CardTitle>
+                    <CardDescription className='text-sm'>
+                        Booking data Sent Booking Form
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className={cn('p-1 bg-slate-300 animate-pulse rounded-md')}>Loading Bookings data ...</CardContent>
+            </Card>
+        )
     }
 
     if (error) {

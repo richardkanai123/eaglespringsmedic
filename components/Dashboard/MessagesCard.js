@@ -12,7 +12,17 @@ const MessagesCard = () => {
 
     if (isLoading) {
 
-        return <p>Loading data</p>
+        return (
+            <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[200px] items-center border-4")}>
+                <CardHeader>
+                    <CardTitle >
+                        Messages
+                    </CardTitle>
+                    <CardDescription className='text-sm'>Messages Sent from Contact form</CardDescription>
+                </CardHeader>
+                <CardContent className={cn('p-1 bg-slate-300 animate-pulse rounded-md')}>Loading Messages data..</CardContent>
+            </Card>
+        )
     }
 
     if (error) {
