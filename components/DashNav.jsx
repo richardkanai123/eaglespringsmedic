@@ -20,6 +20,7 @@ const DashNav = () => {
                     user &&
                     <>
                         <Link className=' hover:shadow-lg focus:text-cyan-300 active:bg-cyan-300 hover:text-cyan-500 p-1 hover:underline' href='/Dashboard/Messages' >Messages</Link>
+                        <Link className=' hover:shadow-lg focus:text-cyan-300 active:bg-cyan-300 hover:text-cyan-500 p-1 hover:underline' href='/Dashboard/Booking' >Booking</Link>
                         <Link className=' hover:shadow-lg focus:text-cyan-300 active:bg-cyan-300 hover:text-cyan-500 hover:underline p-1' href='/Dashboard/Blogs'>Blogs</Link>
                         <Link className=' hover:shadow-lg focus:text-cyan-300 active:bg-cyan-300 hover:text-cyan-500 hover:underline p-1' href='/Dashboard/Blogs/new'>New Blog</Link>
 
