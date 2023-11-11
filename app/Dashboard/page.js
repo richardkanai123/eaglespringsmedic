@@ -7,7 +7,7 @@ import { FireAuth } from '@/lib/Firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 const DashBoardHome = () => {
-    const [user, loading, error] = useAuthState(FireAuth);
+    const [user] = useAuthState(FireAuth);
 
     if (user) {
         return (
@@ -17,13 +17,14 @@ const DashBoardHome = () => {
 
             </div>)
     }
-    return (
-        <>
+    else
+        return (
+            <>
 
-            <Login />
+                <Login />
 
-        </>
-    )
+            </>
+        )
 }
 
 export default DashBoardHome
