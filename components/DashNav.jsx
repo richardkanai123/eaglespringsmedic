@@ -7,9 +7,10 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { toast } from 'react-toastify'
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 const DashNav = () => {
     const [user] = useAuthState(FireAuth);
-
+    const Router = useRouter()
 
     return (
         <div className='w-full p-1 rounded-sm bg-sky-200 dark:bg-slate-900 dark:border-b flex flex-col '>
@@ -21,6 +22,7 @@ const DashNav = () => {
                         className={cn('')}
                         onClick={async () => await signOut(FireAuth)
                             .then(() => toast.info('Admin Signed out'))
+                            .then(() => Router.replace('/Dashboard'))
                         }>
                         Log out
                     </Button>}

@@ -1,8 +1,20 @@
-import React from 'react'
+import MessagesHolder from '@/components/Dashboard/MessagesHolder'
 
-const DashBoardMessages = () => {
+const DashBoardMessages = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/messages`, {
+        cache: 'no-cache'
+    })
+
+    if (!res.ok) {
+        throw new Error("fetch error occured")
+    }
+    const data = await res.json()
+    const messagesData = data?.data
+
     return (
-        <div>DashBoardMessages</div>
+        <div>
+            <MessagesHolder messages={messagesData} />
+        </div>
     )
 }
 

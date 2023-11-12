@@ -20,27 +20,30 @@ import { BsFacebook } from 'react-icons/bs'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { BiSolidPhoneCall } from 'react-icons/bi'
 import { toast } from 'react-toastify'
+import { messagesCollection } from '@/lib/Firebase'
+import { Timestamp, addDoc } from 'firebase/firestore'
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
-    Name: z.string({
+    name: z.string({
         required_error: "Name is required",
         invalid_type_error: "Name must be a string",
     }).min(3),
-    Email: z.string({
+    email: z.string({
         required_error: "email is required",
     }).email({
         invalid_type_error: "Enter a valid email",
     }),
-    Message: z.string().min(20, {
+    message: z.string().min(20, {
         message: "Must be above 20 characters"
     }),
-    PhoneNumber: z.string().startsWith(('0'), "Number must start with 0").max(10, "Must be 10 digits").min(10, "Must be 10 digits")
+    phoneNumber: z.string().startsWith(('0'), "Number must start with 0").max(10, "Must be 10 digits").min(10, "Must be 10 digits")
 })
 
 
 const Contact = () => {
 
-
+    const Router = useRouter()
     const NotifySent = () => {
         toast.success(
             <div className="w-full p-2">
@@ -58,15 +61,26 @@ const Contact = () => {
     return (
 
         <Form {...form}>
-            <form onSubmit={form.handleSubmit((data) => {
-                console.log(data)
-                NotifySent()
-                form.reset()
+            <form onSubmit={form.handleSubmit(async (data) => {
+                try {
+                    await addDoc(messagesCollection, {
+                        name: data.name,
+                        email: data.email,
+                        phoneNumber: data.phoneNumber,
+                        status: "unread",
+                        message: data.message,
+                        time: Timestamp.fromDate(new Date())
+                    })
+                        .then(() => NotifySent())
+                        .then(() => Router.replace('/contact/Success'))
+                } catch (error) {
+                    toast.error(error.message)
+                }
 
             })} className="space-y-4 w-full text-base p-3 md:w-[50%] self-center">
                 <FormField
                     control={form.control}
-                    name="Name"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Name</FormLabel>
@@ -79,7 +93,7 @@ const Contact = () => {
                 />
                 <FormField
                     control={form.control}
-                    name="Email"
+                    name="email"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Email</FormLabel>
@@ -95,7 +109,7 @@ const Contact = () => {
                 />
                 <FormField
                     control={form.control}
-                    name="PhoneNumber"
+                    name="phoneNumber"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Phone Number</FormLabel>
@@ -112,7 +126,7 @@ const Contact = () => {
 
                 <FormField
                     control={form.control}
-                    name="Message"
+                    name="message"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Your Message</FormLabel>
