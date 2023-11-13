@@ -38,17 +38,21 @@ const MessagesHolder = ({ messages }) => {
                         messages.map((msg) => (
                             <AccordionItem key={msg.id} value={msg.id}>
 
-                                <AccordionTrigger className={cn('w-full px-4 text-lg font-semibold')}>
-                                    {
-                                        msg.status === 'read' ? <span className="p-1 bg-green-600 h-5 w-5 rounded-full"></span> : <span className="p-1 bg-yellow-600 h-5 w-5 rounded-full"></span>
-                                    }
-                                    <p>    Sent by: {msg.name || msg.Name} on {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleDateString()} at {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleTimeString()}</p>
+                                <AccordionTrigger className={cn('w-full px-4 font-semibold  text-left')}>
+
+                                    <p className="flex gap-2 align-middle items-center  "> From: {msg.name}   {
+                                        msg.status === 'read' ? <span className="p-1 bg-green-600 h-2 w-2 rounded-full"></span> : <span className="p-1 bg-yellow-600 h-2 w-2 rounded-full"></span>
+                                    }</p>
 
                                 </AccordionTrigger>
                                 <AccordionContent className={cn('px-3 py-1 bg-sky-200 dark:bg-slate-800  rounded ')}>
                                     <p className="  text-base font-semibold mb-1">{msg.Message || msg.message}</p>
                                     <p className="flex text-base font-medium flex-col">
-                                        Contact: <span>{msg.email || ''}</span> <span> {msg.phoneNumber || ''}</span>
+                                        Contact: <span>{msg.email}</span> <span> {msg.phoneNumber}</span>
+                                    </p>
+                                    <p className="flex text-sm  flex-col">
+                                        Sent on:
+                                        {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleDateString()} at {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleTimeString()}
                                     </p>
                                     <div className="flex self-center p-2 align-middle">
                                         {
@@ -57,7 +61,7 @@ const MessagesHolder = ({ messages }) => {
                                                 onClick={async () => {
                                                     try {
                                                         await setDoc(doc(db, 'messages', msg.id), { status: 'read' }, { merge: true })
-                                                            .then(() => toast.info('Message deleted!'))
+                                                            .then(() => toast.success(' Read Message!'))
                                                             .then(() => Router.refresh())
                                                     } catch (error) {
                                                         console.log(error)

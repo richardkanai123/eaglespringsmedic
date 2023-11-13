@@ -36,11 +36,14 @@ import { Calendar } from "@/components/ui/calendar"
 import { CalendarX2Icon } from 'lucide-react'
 import { addDays, format } from "date-fns"
 import { toast } from 'react-toastify'
+import { Timestamp, addDoc } from 'firebase/firestore'
+import { BookingsCollection } from '@/lib/Firebase'
+import { useRouter } from 'next/navigation'
 
-
-// zod validation schema
 
 const Booking = () => {
+
+    const Router = useRouter()
 
     const NotifySucess = () => {
         toast.success(
@@ -50,11 +53,13 @@ const Booking = () => {
         )
     }
 
+    // zod validation schema
     const formSchema = z.object({
         Name: z.string({
             required_error: "Name is required",
             invalid_type_error: "Name must be a string",
         }).min(3),
+        Email: z.string().email(),
         PhoneNumber: z.string().startsWith(('0'), "Number must start with 0").max(10, "Must be 10 digits").min(10, "Must be 10 digits"),
         Department: z.string(),
         appointmentDate: z.date({
@@ -139,9 +144,20 @@ const Booking = () => {
             <div className="w-full flex-1 h-full">
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit((data) => {
-                        console.log(data)
-                        NotifySucess();
+                    <form onSubmit={form.handleSubmit(async (data) => {
+
+                        await addDoc(BookingsCollection, {
+                            name: data.Name,
+                            phoneNumber: data.PhoneNumber,
+                            email: data.Email,
+                            department: data.Department,
+                            date: Timestamp.fromDate(data.appointmentDate),
+                            status: "pending"
+                        })
+                            .then(() => {
+                                NotifySucess();
+                                Router.push('/booking/Success')
+                            })
                         form.resetField()
 
                     })} className="space-y-2 w-full text-base p-3  self-center">
@@ -258,7 +274,7 @@ const Booking = () => {
                             )}
                         />
 
-                        <Button type="submit" className={cn('w-[200px] text-white text-base p-2')} >Send</Button>
+                        <Button type="submit" variant='primary' className={cn('w-[200px] bg-lime-400')} >Send</Button>
                     </form>
                 </Form>
             </div>
