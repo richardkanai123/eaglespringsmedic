@@ -3,7 +3,7 @@ import React, { Suspense } from 'react'
 
 const BookingsPage = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/bookings`, {
-        cache: 'no-cache'
+        cache: 'no-store'
     })
 
     if (!res.ok) {

@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Timestamp, doc, updateDoc } from 'firebase/firestore'
@@ -35,12 +35,12 @@ const ConfirmedBookingCard = ({ item }) => {
 
     return (
         <Card className={cn('w-full md:min-w-[320px] max-w-sm min-h-[200px] ')} key={item.id}>
-            <CardContent>
-                <p className="text-base font-light">
-                    Name: {item.name}
-                </p>
+            <CardHeader>
+                Name: {item.name}
+            </CardHeader>
+            <CardContent className={cn('gap-2')}>
                 <p>Contact: {item.phoneNumber},  {item.email}</p>
-                <p className="text-sm underline font-light">
+                <p className="text-base underline font-light">
                     Date:{new Date((item.date.seconds * 1000) + ((item.date.nanoseconds) / 1000000000)).toLocaleDateString()}
                 </p>
 
