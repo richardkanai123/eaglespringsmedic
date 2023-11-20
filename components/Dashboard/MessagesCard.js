@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 const MessagesCard = () => {
 
-    const { data, isLoading, error } = useQuery({ queryKey: ['messages1'], queryFn: async () => await fetch('/api/messages').then((res) => res.json()), })
+    const { data, isLoading, error } = useQuery({ queryKey: ['messages1'], queryFn: async () => await fetch('/api/messages', { cache: 'no-store' }).then((res) => res.json()), })
 
     if (isLoading) {
 

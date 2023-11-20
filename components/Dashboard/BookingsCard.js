@@ -11,7 +11,11 @@ import { useQuery } from "@tanstack/react-query";
 const BookingsCard = () => {
 
 
-    const { data, isLoading, error } = useQuery({ queryKey: ['bookings'], queryFn: async () => await fetch('/api/bookings').then((res) => res.json()), })
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['bookings'],
+        refetchOnMount: true,
+        queryFn: async () => await fetch('/api/bookings', { cache: 'no-store' }).then((res) => res.json()),
+    })
 
     if (isLoading) {
 
