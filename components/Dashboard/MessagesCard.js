@@ -27,7 +27,6 @@ const MessagesCard = () => {
             const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setisLoading(false)
             setData(data)
-            console.log(data);
             return data
         } catch (error) {
             setisLoading(false)
@@ -43,20 +42,20 @@ const MessagesCard = () => {
         return () => fetchMessages()
     }, [])
 
-    // if (isLoading) {
+    if (isLoading) {
 
-    //     return (
-    //         <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[200px] items-center border-4")}>
-    //             <CardHeader>
-    //                 <CardTitle >
-    //                     Messages
-    //                 </CardTitle>
-    //                 <CardDescription className='text-sm'>Messages Sent from Contact form</CardDescription>
-    //             </CardHeader>
-    //             <CardContent className={cn('p-1 bg-slate-300 animate-pulse rounded-md')}>Loading Messages data..</CardContent>
-    //         </Card>
-    //     )
-    // }
+        return (
+            <Card className={cn("w-full md:min:w-[300px] max-w-sm h-[200px] items-center border-4")}>
+                <CardHeader>
+                    <CardTitle >
+                        Messages
+                    </CardTitle>
+                    <CardDescription className='text-sm'>Messages Sent from Contact form</CardDescription>
+                </CardHeader>
+                <CardContent className={cn('p-1 bg-slate-300 animate-pulse rounded-md')}>Loading Messages data..</CardContent>
+            </Card>
+        )
+    }
 
     if (error) {
 

@@ -1,21 +1,39 @@
 'use client'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { db } from "@/lib/Firebase";
 import { cn } from "@/lib/utils"
 import { BookingsCollection } from "@/lib/Firebase";
-import { getDocs } from "firebase/firestore";
+import { getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 
 const BookingsCard = () => {
+    const [isLoading, setisLoading] = useState(false)
+    const [error, setError] = useState()
+    const [data, setData] = useState()
 
+    const FetchBookings = async () => {
+        setisLoading(true)
+        const messagesQuery = query(BookingsCollection, orderBy('department'))
+        const unsub = await getDocs(messagesQuery)
+        try {
+            const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setisLoading(false)
+            setData(data)
+            return data
+        } catch (error) {
+            setisLoading(false)
+            setError(error)
+            return error.message
 
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['bookings'],
-        refetchOnMount: 'always',
-        queryFn: async () => await fetch('/api/bookings', { cache: 'no-store' }).then((res) => res.json()),
-    })
+        }
+    }
+
+    useEffect(() => {
+        FetchBookings()
+
+        return () => FetchBookings()
+    }, [])
 
     if (isLoading) {
 
@@ -36,7 +54,14 @@ const BookingsCard = () => {
 
     if (error) {
 
-        return <p>{error.message}</p>
+        return (
+            <Card className={cn("w-full md:min:w-[300px] max-w-sm px-4 h-[250px]")}>
+                <CardTitle>Error Occured</CardTitle>
+                <CardDescription>
+                    <p className="text-red-400 text-base font-light">{error.message}</p>
+                </CardDescription>
+            </Card>
+        )
     }
 
     if (data) {

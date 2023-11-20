@@ -17,10 +17,7 @@ const DashBoardHome = () => {
                 <MessagesCard />
                 <BookingsCard />
 
-                <Button OnClick={() => {
-                    console.log('clicked');
-                    getMessages()
-                }}>GetMessages</Button>
+
             </div>)
     }
     else
