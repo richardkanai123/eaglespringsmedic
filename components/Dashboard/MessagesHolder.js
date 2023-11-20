@@ -15,9 +15,15 @@ import { Button } from "@/components/ui/button"
 import { deleteDoc, doc, setDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import { useQuery } from "@tanstack/react-query"
+import { getMessages } from "@/lib/actions"
 
 
-const MessagesHolder = ({ messages }) => {
+const MessagesHolder = () => {
+    const { data, error } = useQuery({
+        queryKey: ['messages1'],
+        queryFn: getMessages
+    })
 
     const [user] = useAuthState(FireAuth)
 
@@ -35,7 +41,7 @@ const MessagesHolder = ({ messages }) => {
 
                 <Accordion type="single" collapsible className="w-full">
                     {
-                        messages.map((msg) => (
+                        data.map((msg) => (
                             <AccordionItem key={msg.id} value={msg.id}>
 
                                 <AccordionTrigger className={cn('w-full px-4 font-semibold  text-left')}>

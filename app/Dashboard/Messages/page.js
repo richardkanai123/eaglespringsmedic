@@ -1,23 +1,27 @@
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
-
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import MessagesHolder from '@/components/Dashboard/MessagesHolder'
+import { getMessages } from '@/lib/actions'
+
+
 const DashBoardMessages = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/messages`,
-        {
-            cache: 'no-cache',
+    const queryClient = new QueryClient()
+    await queryClient.prefetchQuery({
+        queryKey: ['messages1'],
+        queryFn: getMessages
+    })
 
-        })
 
-    if (!res.ok) {
-        throw new Error("fetch error occured")
-    }
-    const data = await res.json()
+
 
 
     return (
-        <div>
-            <MessagesHolder messages={data} />
+        <div className='w-full flex flex-col gap-3'>
+            <h1>Messages</h1>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <MessagesHolder />
+            </HydrationBoundary>
         </div>
     )
 }
