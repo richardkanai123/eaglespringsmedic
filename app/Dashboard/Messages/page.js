@@ -9,11 +9,11 @@ const DashBoardMessages = async () => {
         throw new Error("fetch error occured")
     }
     const data = await res.json()
-    const messagesData = data?.data
+
 
     return (
         <div>
-            <MessagesHolder messages={messagesData} />
+            <MessagesHolder messages={data} />
         </div>
     )
 }
