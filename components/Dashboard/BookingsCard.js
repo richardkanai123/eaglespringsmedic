@@ -57,11 +57,14 @@ const BookingsCard = () => {
                                 <h1 className="text-3xl font-bold">
                                     Total: {data?.data.length}
                                 </h1>
-                                <p className="text-lg font-semibold text-lime-800 ">
+                                <p className="text-lg font-semibold text-yellow-800 ">
                                     Confirmed   : {data?.data.filter((item) => (item.status === "confirmed")).length}
                                 </p>
-                                <p className="text-lg font-semibold text-yellow-400 ">
+                                <p className="text-lg font-semibold text-red-300 ">
                                     Pending: {data?.data.filter((item) => (item.status === "pending")).length}
+                                </p>
+                                <p className="text-lg font-semibold text-lime-400 ">
+                                    Completed: {data?.data.filter((item) => (item.status === "completed")).length}
                                 </p>
 
 

@@ -34,7 +34,9 @@ const BookingsLister = ({ Bookings }) => {
             {
                 (Bookings?.filter((item) => item.status === 'confirmed')).map((bk) =>
                     <ConfirmedBookingCard key={bk.id} item={bk} />
-                )}
+                )
+            }
+
         </div>
     )
 }
