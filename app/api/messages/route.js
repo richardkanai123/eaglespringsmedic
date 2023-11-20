@@ -1,16 +1,14 @@
 import { blogsCollection, db, messagesCollection } from "@/lib/Firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { QuerySnapshot, collection, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
-import { Shoes } from "@/data";
 export async function GET() {
+
     try {
-        // const messagesQuery = query(messagesCollection, orderBy('status'))
-        const unsub = await getDocs(messagesCollection)
-        const res = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        const data = res
-        return NextResponse.json({
-            data
-        }, { status: 200 })
+        const messagesQuery = query(messagesCollection, orderBy('status'))
+        const unsub = await getDocs(messagesQuery)
+        const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+        return NextResponse.json(data, { status: 200 })
     } catch (error) {
         return new NextResponse({ error })
 

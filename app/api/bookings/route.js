@@ -6,11 +6,10 @@ export async function GET() {
     try {
         const BookingsQuery = query(BookingsCollection, orderBy('status', "desc"))
         const unsub = await getDocs(BookingsCollection)
-        const res = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        const data = res
-        return NextResponse.json({
+        const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        return NextResponse.json(
             data
-        }, { status: 200 })
+            , { status: 200 })
     } catch (error) {
         return new NextResponse({ error })
 

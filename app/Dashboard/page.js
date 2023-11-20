@@ -2,8 +2,10 @@
 import BookingsCard from '@/components/Dashboard/BookingsCard'
 import Login from '@/components/Dashboard/Login'
 import MessagesCard from '@/components/Dashboard/MessagesCard'
+import { Button } from '@/components/ui/button'
 
 import { FireAuth } from '@/lib/Firebase'
+import { getMessages } from '@/lib/actions'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 const DashBoardHome = () => {
@@ -15,6 +17,10 @@ const DashBoardHome = () => {
                 <MessagesCard />
                 <BookingsCard />
 
+                <Button OnClick={() => {
+                    console.log('clicked');
+                    getMessages()
+                }}>GetMessages</Button>
             </div>)
     }
     else

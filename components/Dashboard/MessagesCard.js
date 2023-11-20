@@ -6,11 +6,14 @@ import { messagesCollection } from "@/lib/Firebase";
 import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-const MessagesCard = () => {
+
+
+const MessagesCard = ({ messagesList }) => {
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['messages1'],
         refetchOnMount: 'always',
+        initialData: messagesList,
         queryFn: async () => await fetch('/api/messages', { cache: 'no-store' }).then((res) => res.json()),
     })
 
@@ -31,7 +34,14 @@ const MessagesCard = () => {
 
     if (error) {
 
-        return <p>{error.message}</p>
+        return (
+            <Card className={cn("w-full md:min:w-[300px] max-w-sm px-4 h-[250px]")}>
+                <CardTitle>Error Occured</CardTitle>
+                <CardDescription>
+                    <p className="text-red-400 text-base font-light">{error.message}</p>
+                </CardDescription>
+            </Card>
+        )
     }
 
     if (data) {
@@ -51,11 +61,9 @@ const MessagesCard = () => {
                     {
                         !isLoading && data && (
                             <>
-                                <h1 className="text-3xl font-bold">Total: {data?.data.length}</h1>
-                                <p className="text-lg font-semibold text-lime-800 ">Read: {data?.data.filter((item) => (item.status === "read")).length}</p>
-                                <p className="text-lg font-semibold text-yellow-400 ">Unread: {data?.data.filter((item) => (item.status === "unread")).length}</p>
-
-
+                                <h1 className="text-3xl font-bold">Total: {data?.length}</h1>
+                                <p className="text-lg font-semibold text-lime-800 ">Read: {data?.filter((item) => (item.status === "read")).length}</p>
+                                <p className="text-lg font-semibold text-yellow-400 ">Unread: {data.filter((item) => (item.status === "unread")).length}</p>
                             </>
                         )
                     }
