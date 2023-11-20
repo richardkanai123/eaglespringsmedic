@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 const MessagesCard = () => {
 
-    const { data, isLoading, error } = useQuery({ queryKey: ['messages1'], queryFn: async () => await fetch('/api/messages', { cache: 'no-store' }).then((res) => res.json()), })
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['messages1'],
+        refetchOnMount: 'always',
+        queryFn: async () => await fetch('/api/messages', { cache: 'no-store' }).then((res) => res.json()),
+    })
 
     if (isLoading) {
 
@@ -49,7 +53,7 @@ const MessagesCard = () => {
                             <>
                                 <h1 className="text-3xl font-bold">Total: {data?.data.length}</h1>
                                 <p className="text-lg font-semibold text-lime-800 ">Read: {data?.data.filter((item) => (item.status === "read")).length}</p>
-                                <p className="text-lg font-semibold text-yellow-400 ">Pending: {data?.data.filter((item) => (item.status === "unread")).length}</p>
+                                <p className="text-lg font-semibold text-yellow-400 ">Unread: {data?.data.filter((item) => (item.status === "unread")).length}</p>
 
 
                             </>

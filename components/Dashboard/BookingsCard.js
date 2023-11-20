@@ -13,7 +13,7 @@ const BookingsCard = () => {
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['bookings'],
-        refetchOnMount: true,
+        refetchOnMount: 'always',
         queryFn: async () => await fetch('/api/bookings', { cache: 'no-store' }).then((res) => res.json()),
     })
 
