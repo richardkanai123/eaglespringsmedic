@@ -62,7 +62,7 @@ const MessagesHolder = ({ messages }) => {
                                                     try {
                                                         await setDoc(doc(db, 'messages', msg.id), { status: 'read' }, { merge: true })
                                                             .then(() => toast.success(' Read Message!'))
-                                                            .then(() => Router.refresh())
+                                                            .then(() => Router.refresh("/Dashboard/Messages"))
                                                     } catch (error) {
                                                         console.log(error)
                                                         toast.error(error.message)
@@ -79,7 +79,7 @@ const MessagesHolder = ({ messages }) => {
                                                     try {
                                                         await deleteDoc(doc(db, 'messages', msg.id))
                                                             .then(() => toast.info('Message deleted!'))
-                                                            .then(() => Router.refresh())
+                                                            .then(() => Router.refresh("/Dashboard/Messages"))
                                                     } catch (error) {
                                                         console.log(error)
                                                         toast.error(error.message)

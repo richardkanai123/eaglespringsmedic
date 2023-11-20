@@ -10,7 +10,7 @@ const BookingsPage = async () => {
         throw new Error("fetch error occured")
     }
     const data = await res.json()
-    const BookingsData = data?.data
+
     return (
         <>
 
@@ -19,7 +19,7 @@ const BookingsPage = async () => {
             <Suspense
                 fallback={<p>Loading all bookings ...</p>}
             >
-                <BookingsLister Bookings={BookingsData} />
+                <BookingsLister Bookings={data} />
             </Suspense>
         </>
     )
