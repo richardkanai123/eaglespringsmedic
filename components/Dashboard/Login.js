@@ -60,7 +60,7 @@ const Login = () => {
                 try {
 
                     await signInWithEmailAndPassword(FireAuth, Email, Password)
-                    toast.success("Admin Logged in Successfully")
+                    toast.success("Admin Logged in Successfully", { duration: 1 })
 
                 } catch (error) {
                     toast.error(error.message)
