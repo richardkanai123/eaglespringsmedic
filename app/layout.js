@@ -9,6 +9,7 @@ import BigScreenNav from '@/components/BigScreenNav'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Providers from './Providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -47,7 +48,9 @@ export default function RootLayout({ children }) {
           </header>
 
           <main className='w-full flex flex-col mx-auto mb-2 scroll-smooth '>
-            {children}
+            <Providers>
+              {children}
+            </Providers>
 
             <ToastContainer />
           </main>

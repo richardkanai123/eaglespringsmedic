@@ -23,6 +23,7 @@ import { toast } from 'react-toastify'
 import { messagesCollection } from '@/lib/Firebase'
 import { Timestamp, addDoc } from 'firebase/firestore'
 import { useRouter } from 'next/navigation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const formSchema = z.object({
     name: z.string({
@@ -42,6 +43,31 @@ const formSchema = z.object({
 
 
 const Contact = () => {
+    const queryClient = useQueryClient()
+    // const queryClient = new QueryClient()
+
+    const messagesMutation = useMutation({
+        mutationFn: async (data) => {
+            try {
+                await addDoc(messagesCollection, {
+                    name: data.name,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber,
+                    status: "unread",
+                    message: data.message,
+                    time: Timestamp.fromDate(new Date())
+                })
+                    .then(() => NotifySent())
+                    .then(() => Router.replace('/contact/Success'))
+            } catch (error) {
+                toast.error(error.message)
+            }
+        },
+        mutationKey: ['messages'],
+        onSuccess: () => {
+            queryClient.invalidateQueries(['messages'])
+        }
+    })
 
     const Router = useRouter()
     const NotifySent = () => {
@@ -61,21 +87,8 @@ const Contact = () => {
     return (
 
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(async (data) => {
-                try {
-                    await addDoc(messagesCollection, {
-                        name: data.name,
-                        email: data.email,
-                        phoneNumber: data.phoneNumber,
-                        status: "unread",
-                        message: data.message,
-                        time: Timestamp.fromDate(new Date())
-                    })
-                        .then(() => NotifySent())
-                        .then(() => Router.replace('/contact/Success'))
-                } catch (error) {
-                    toast.error(error.message)
-                }
+            <form onSubmit={form.handleSubmit(data => {
+                messagesMutation.mutate(data)
 
             })} className="space-y-4 w-full text-base p-3 md:w-[50%] self-center">
                 <FormField

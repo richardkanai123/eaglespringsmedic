@@ -15,93 +15,120 @@ import { Button } from "@/components/ui/button"
 import { deleteDoc, doc, setDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getMessages } from "@/lib/actions"
 
 
 const MessagesHolder = () => {
-    const { data, error } = useQuery({
-        queryKey: ['messages1'],
+    const queryClient = useQueryClient()
+    const [user] = useAuthState(FireAuth)
+    const Router = useRouter()
+
+    // fetch messages
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['messages'],
         queryFn: getMessages
     })
 
-    const [user] = useAuthState(FireAuth)
 
-    const Router = useRouter()
+    const MutateMessagesStatus = useMutation({
+        mutationFn: async (msg_ID) => {
+            try {
+                await setDoc(doc(db, 'messages', msg_ID), { status: 'read' }, { merge: true })
+                    .then(() => toast.success(' Read Message!'))
+                    .then(() => Router.refresh("/Dashboard/Messages"))
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['messages'])
+        }
+    })
+
+    const MutateDeleteMessage = useMutation({
+        mutationFn: async (msg_id) => {
+            try {
+                await deleteDoc(doc(db, 'messages', msg_id))
+                    .then(() => toast.info('Message deleted!'))
+                // .then(() => Router.refresh("/Dashboard/Messages"))
+            } catch (error) {
+                toast.error(error.message)
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['messages'])
+        }
+    })
+
+
 
 
     if (!user) {
-        <Login />
+        return <Login />
     }
 
-    if (user)
+    if (isLoading) {
+        return
+        <p>Loading ...</p>
+    }
 
-        return (
-            <div className="w-full">
+    if (data.length <= 0) {
+        return <p>No messages found</p>
+    }
 
-                <Accordion type="single" collapsible className="w-full">
-                    {
-                        data.map((msg) => (
-                            <AccordionItem key={msg.id} value={msg.id}>
 
-                                <AccordionTrigger className={cn('w-full px-4 font-semibold  text-left')}>
+    return (
+        <div className="w-full">
 
-                                    <p className="flex gap-2 align-middle items-center  "> From: {msg.name}   {
-                                        msg.status === 'read' ? <span className="p-1 bg-green-600 h-2 w-2 rounded-full"></span> : <span className="p-1 bg-yellow-600 h-2 w-2 rounded-full"></span>
-                                    }</p>
+            <Accordion type="single" collapsible className="w-full">
+                {
+                    data.map((msg) => (
+                        <AccordionItem key={msg.id} value={msg.id}>
 
-                                </AccordionTrigger>
-                                <AccordionContent className={cn('px-3 py-1 bg-sky-200 dark:bg-slate-800  rounded ')}>
-                                    <p className="  text-base font-semibold mb-1">{msg.Message || msg.message}</p>
-                                    <p className="flex text-base font-medium flex-col">
-                                        Contact: <span>{msg.email}</span> <span> {msg.phoneNumber}</span>
-                                    </p>
-                                    <p className="flex text-sm  flex-col">
-                                        Sent on:
-                                        {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleDateString()} at {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleTimeString()}
-                                    </p>
-                                    <div className="flex self-center p-2 align-middle">
-                                        {
-                                            msg.status === "unread" &&
-                                            <Button
-                                                onClick={async () => {
-                                                    try {
-                                                        await setDoc(doc(db, 'messages', msg.id), { status: 'read' }, { merge: true })
-                                                            .then(() => toast.success(' Read Message!'))
-                                                            .then(() => Router.refresh("/Dashboard/Messages"))
-                                                    } catch (error) {
-                                                        console.log(error)
-                                                        toast.error(error.message)
-                                                    }
-                                                }}
-                                                className={cn('bg-yellow-700')}>
-                                                Mark as read
-                                            </Button>
-                                        }
-                                        {
-                                            msg.status === "read" &&
-                                            <Button
-                                                onClick={async () => {
-                                                    try {
-                                                        await deleteDoc(doc(db, 'messages', msg.id))
-                                                            .then(() => toast.info('Message deleted!'))
-                                                            .then(() => Router.refresh("/Dashboard/Messages"))
-                                                    } catch (error) {
-                                                        console.log(error)
-                                                        toast.error(error.message)
-                                                    }
-                                                }}
-                                                variant='destructive'>
-                                                Delete
-                                            </Button>}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>))
-                    }
-                </Accordion>
+                            <AccordionTrigger className={cn('w-full px-4 font-semibold  text-left')}>
 
-            </div>
-        )
+                                <p className="flex gap-2 align-middle items-center  "> From: {msg.name}   {
+                                    msg.status === 'read' ? <span className="p-1 bg-green-600 h-2 w-2 rounded-full"></span> : <span className="p-1 bg-yellow-600 h-2 w-2 rounded-full"></span>
+                                }</p>
+
+                            </AccordionTrigger>
+                            <AccordionContent className={cn('px-3 py-1 bg-sky-200 dark:bg-slate-800  rounded ')}>
+                                <p className="  text-base font-semibold mb-1">{msg.Message || msg.message}</p>
+                                <p className="flex text-base font-medium flex-col">
+                                    Contact: <span>{msg.email}</span> <span> {msg.phoneNumber}</span>
+                                </p>
+                                <p className="flex text-sm  flex-col">
+                                    Sent on:
+                                    {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleDateString()} at {new Date((msg.time.seconds * 1000) + ((msg.time.nanoseconds) / 1000000000)).toLocaleTimeString()}
+                                </p>
+                                <div className="flex self-center p-2 align-middle">
+                                    {
+                                        msg.status === "unread" &&
+                                        <Button
+                                            onClick={
+                                                () => MutateMessagesStatus.mutate(msg.id)
+                                            }
+                                            className={cn('bg-yellow-700')}>
+                                            Mark as read
+                                        </Button>
+                                    }
+                                    {
+                                        msg.status === "read" &&
+                                        <Button
+                                            onClick={() => MutateDeleteMessage.mutate(msg.id)}
+                                            variant='destructive'>
+                                            Delete
+                                        </Button>}
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>))
+                }
+            </Accordion>
+
+        </div >
+    )
 }
 
 export default MessagesHolder
