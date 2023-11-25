@@ -27,7 +27,8 @@ const MessagesHolder = () => {
     // fetch messages
     const { data, error, isLoading } = useQuery({
         queryKey: ['messages'],
-        queryFn: getMessages
+        queryFn: getMessages,
+        refetchOnMount: 'always'
     })
 
 
