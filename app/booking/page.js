@@ -59,7 +59,7 @@ const Booking = () => {
             required_error: "Name is required",
             invalid_type_error: "Name must be a string",
         }).min(3),
-        Email: z.string().email(),
+        Email: z.string().email().toUpperCase(),
         PhoneNumber: z.string().startsWith(('0'), "Number must start with 0").max(10, "Must be 10 digits").min(10, "Must be 10 digits"),
         Department: z.string(),
         appointmentDate: z.date({
@@ -183,8 +183,8 @@ const Booking = () => {
                                     <FormControl>
                                         <Input placeholder="Your Email Address" {...field} />
                                     </FormControl>
-                                    <FormDescription>
-                                        Booking information will be sent to this email
+                                    <FormDescription className={cn('font-semibold text-sm text-yellow-800')}>
+                                        📩📩Booking information will be sent to this email📩📩
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

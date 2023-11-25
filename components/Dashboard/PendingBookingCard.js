@@ -7,6 +7,7 @@ import { BookingsCollection } from '@/lib/Firebase'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BookmarkPlus } from "lucide-react"
+import { SendEmail } from '@/lib/actions'
 
 const PendingBookingCard = ({ item, FetchNew }) => {
     const [time, setTime] = useState()
@@ -20,6 +21,7 @@ const PendingBookingCard = ({ item, FetchNew }) => {
                 <span> <BookmarkPlus className='text-yellow-200 w-8 h-8' /></span>
             </CardHeader>
             <CardContent className={cn('gap-2')}>
+                <span className='text-xs italic font-thin'>{item.email}</span>
                 <p>Contact: {item.phoneNumber}</p>
                 <p className="text-base underline font-light">
                     Date: {new Date((item.date.seconds * 1000) + ((item.date.nanoseconds) / 1000000000)).toLocaleDateString()}
@@ -53,6 +55,9 @@ const PendingBookingCard = ({ item, FetchNew }) => {
                                             scheduleTime: time,
                                             status: 'confirmed'
                                         })
+                                            .then(() => {
+                                                SendEmail(item.name, new Date((item.date.seconds * 1000) + ((item.date.nanoseconds) / 1000000000)).toLocaleDateString(), time, item.department, item.email)
+                                            })
                                             .then(() => {
                                                 toast.success(`Booking by ${item.name} confirmed for ${time}`);
                                                 setIsConfirming(false)
