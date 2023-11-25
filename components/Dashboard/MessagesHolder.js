@@ -1,5 +1,4 @@
 'use client'
-
 import {
     Accordion,
     AccordionContent,
@@ -12,70 +11,64 @@ import { format } from 'date-fns'
 import { useAuthState } from "react-firebase-hooks/auth"
 import Login from "@/components/Dashboard/Login"
 import { Button } from "@/components/ui/button"
-import { deleteDoc, doc, setDoc } from "firebase/firestore"
+import { deleteDoc, doc, getDocs, orderBy, query, setDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getMessages } from "@/lib/actions"
+import { useEffect, useState } from "react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import ErrorCard from "./ErrorCard"
 
 
 const MessagesHolder = () => {
-    const queryClient = useQueryClient()
     const [user] = useAuthState(FireAuth)
+    const [isLoading, setisLoading] = useState(false)
+    const [error, setError] = useState()
+    const [data, setData] = useState()
+
+
+
     const Router = useRouter()
 
-    // fetch messages
-    const { data, error, isLoading } = useQuery({
-        queryKey: ['messages'],
-        queryFn: getMessages,
-        refetchOnMount: 'always'
-    })
+    const fetchMessages = async () => {
+        setisLoading(true)
+        try {
+            const messagesQuery = query(messagesCollection, orderBy('status'))
+            const unsub = await getDocs(messagesQuery)
+            const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            setisLoading(false)
+            setData(data)
+            return data
+        } catch (error) {
+            setisLoading(false)
+            setError(error)
+            return error.message
 
-
-    const MutateMessagesStatus = useMutation({
-        mutationFn: async (msg_ID) => {
-            try {
-                await setDoc(doc(db, 'messages', msg_ID), { status: 'read' }, { merge: true })
-                    .then(() => toast.success(' Read Message!'))
-                    .then(() => Router.refresh("/Dashboard/Messages"))
-            } catch (error) {
-                console.log(error)
-                toast.error(error.message)
-            }
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries(['messages'])
         }
-    })
-
-    const MutateDeleteMessage = useMutation({
-        mutationFn: async (msg_id) => {
-            try {
-                await deleteDoc(doc(db, 'messages', msg_id))
-                    .then(() => toast.info('Message deleted!'))
-                // .then(() => Router.refresh("/Dashboard/Messages"))
-            } catch (error) {
-                toast.error(error.message)
-            }
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries(['messages'])
-        }
-    })
-
-
-
-
-    if (!user) {
-        return <Login />
     }
+
+    useEffect(() => {
+        fetchMessages()
+
+        return () => fetchMessages()
+    }, [])
 
     if (isLoading) {
         return
         <p>Loading ...</p>
     }
+    if (error) {
+        return <ErrorCard error={error} />
+    }
 
-    if (data.length <= 0) {
+    if (!user) {
+        return <Login />
+    }
+
+
+
+    if (data?.length <= 0) {
         return <p>No messages found</p>
     }
 
@@ -85,7 +78,7 @@ const MessagesHolder = () => {
 
             <Accordion type="single" collapsible className="w-full">
                 {
-                    data.map((msg) => (
+                    data?.map((msg) => (
                         <AccordionItem key={msg.id} value={msg.id}>
 
                             <AccordionTrigger className={cn('w-full px-4 font-semibold  text-left')}>
@@ -108,8 +101,15 @@ const MessagesHolder = () => {
                                     {
                                         msg.status === "unread" &&
                                         <Button
-                                            onClick={
-                                                () => MutateMessagesStatus.mutate(msg.id)
+                                            onClick={async () => {
+                                                try {
+                                                    await setDoc(doc(db, 'messages', msg.id), { status: 'read' }, { merge: true })
+                                                        .then(() => toast.success(' Read Message!'))
+                                                        .then(() => fetchMessages())
+                                                } catch (error) {
+                                                    toast.error(error.message)
+                                                }
+                                            }
                                             }
                                             className={cn('bg-yellow-700')}>
                                             Mark as read
@@ -118,7 +118,16 @@ const MessagesHolder = () => {
                                     {
                                         msg.status === "read" &&
                                         <Button
-                                            onClick={() => MutateDeleteMessage.mutate(msg.id)}
+                                            onClick={async () => {
+                                                try {
+                                                    await deleteDoc(doc(db, 'messages', msg.id))
+                                                        .then(() => toast.info('Message deleted!'))
+                                                        .then(() => fetchMessages())
+                                                } catch (error) {
+                                                    toast.error(error.message)
+                                                }
+                                            }
+                                            }
                                             variant='destructive'>
                                             Delete
                                         </Button>}

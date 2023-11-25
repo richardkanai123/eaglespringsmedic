@@ -7,8 +7,9 @@ import { BookingsCollection } from '@/lib/Firebase'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { useState } from "react"
+import { BookmarkCheck } from 'lucide-react'
 
-const ConfirmedBookingCard = ({ item }) => {
+const ConfirmedBookingCard = ({ item, FetchNew }) => {
     const Router = useRouter()
 
     const [isSetting, setIsSetting] = useState(false)
@@ -24,8 +25,8 @@ const ConfirmedBookingCard = ({ item }) => {
                 .then(() => {
                     toast.success(`Booking by ${item.name} closed!`);
                     setIsSetting(false)
-                    Router.refresh()
                 })
+                .then(() => FetchNew())
 
         } catch (error) {
             toast.error(error.message)
@@ -35,8 +36,9 @@ const ConfirmedBookingCard = ({ item }) => {
 
     return (
         <Card className={cn('w-full md:min-w-[320px] max-w-sm min-h-[200px] ')} key={item.id}>
-            <CardHeader>
-                Name: {item.name}
+            <CardHeader className={cn('w-full flex flex-row justify-between items-center')}>
+                <h3>Name: {item.name}</h3>
+                <span> <BookmarkCheck className='text-lime-800 w-8 h-8' /></span>
             </CardHeader>
             <CardContent className={cn('gap-2')}>
                 <p>Contact: {item.phoneNumber},  {item.email}</p>

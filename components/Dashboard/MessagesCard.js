@@ -13,17 +13,11 @@ const MessagesCard = () => {
     const [error, setError] = useState()
     const [data, setData] = useState()
 
-    // const { data, isLoading, error } = useQuery({
-    //     queryKey: ['messages1'],
-    //     refetchOnMount: 'always',
-    //     queryFn: async () => await fetch('/api/messages', { cache: 'no-store' }).then((res) => res.json()),
-    // })
-
     const fetchMessages = async () => {
         setisLoading(true)
-        const messagesQuery = query(messagesCollection, orderBy('status'))
-        const unsub = await getDocs(messagesQuery)
         try {
+            const messagesQuery = query(messagesCollection, orderBy('status'))
+            const unsub = await getDocs(messagesQuery)
             const data = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             setisLoading(false)
             setData(data)
