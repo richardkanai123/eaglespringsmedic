@@ -112,18 +112,11 @@ export default function Home() {
             <CardDescription className='text-xl'>Call Us Now!</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className='text-md '>Call us:
-              <br />
-              <span className='text-xl  font-medium'>
+            <p className='text-md '>
+              <span className='text-3xl  font-bold'>
                 0797894402
               </span>
-              <br />
-              <span className="text-sm">Or</span>
-              <br />
 
-              <span className='text-lg font-medium'>
-                0786573525
-              </span>
             </p>
           </CardContent>
           <CardFooter>

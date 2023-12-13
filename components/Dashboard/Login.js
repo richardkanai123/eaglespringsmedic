@@ -92,7 +92,7 @@ const Login = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Send</Button>
+                <Button type="submit">Log in</Button>
 
             </form>
 

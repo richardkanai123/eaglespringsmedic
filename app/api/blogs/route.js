@@ -7,9 +7,9 @@ export async function GET() {
         const unsub = await getDocs(blogsCollection)
         const Blogs = unsub.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
-        return NextResponse.json({
-            Blogs
-        }, { status: 200 })
+        return NextResponse.json(
+            { Blogs }
+            , { status: 200 })
     } catch (error) {
         return new NextResponse({ error })
 

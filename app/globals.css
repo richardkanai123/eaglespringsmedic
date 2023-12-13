@@ -74,3 +74,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.blog ul{
+ list-style-type: disc;
+ list-style-position: inside;
+ font-size: 16px
+}
+
+
+.blog ol{
+
+  list-style: decimal;
+}
+
+.blog li{
+padding:8px ;
+}
+
+.blog .strong{
+font-size: larger;
+font-weight: 600;
+}
+
+.blog h1{
+
+  font-weight: 800;
+}
+.blog h2{
+
+  font-weight: 700;
+}
+.blog h3{
+  font-weight: 500;
+}
+.blog p{
+  font-weight: 300;
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: left;
+
+}
+
+.blog p:first-of-type:first-letter{
+font-weight: bolder;
+}

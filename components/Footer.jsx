@@ -20,17 +20,6 @@ const Footer = () => {
                     <h2 className='text-lg font-bold'>Eagle Springs Medical Center</h2>
                     <p className='text-xs italic text-center font-medium '>Your Optimal, Compassionate and Personalized Health Partner.</p>
 
-                    <div className="w-full flex justify-center gap-3 align-middle">
-                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
-                            <span className='text-sky-600 text-3xl'><BsFacebook /></span>
-                        </a>
-                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
-                            <span className='text-lime-600 text-3xl'><IoLogoWhatsapp /></span>
-                        </a>
-                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
-                            <span className='text-yellow-600 text-3xl'><BiSolidPhoneCall /></span>
-                        </a>
-                    </div>
                 </div>
 
                 <div className="flex-1 flex flex-col items-center justify-center align-middle gap-2 ">
@@ -55,8 +44,21 @@ const Footer = () => {
                     </section>
                 </div>
                 <div className="flex-1 flex flex-col items-center gap-2 align-middle ">
-                    <h2 className='w-full text-lg font-bold text-center underline'>Recent Blogs</h2>
-                    <p>TBA</p>
+                    <h2 className='w-full text-lg font-bold text-center underline'>Contact</h2>
+                    <p>0797894402</p>
+                    <p>0797894402</p>
+                    <p>eaglespringmedic@gmail.com</p>
+                    <div className="w-full flex justify-center gap-3 align-middle">
+                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
+                            <span className='text-sky-600 text-3xl'><BsFacebook /></span>
+                        </a>
+                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
+                            <span className='text-lime-600 text-3xl'><IoLogoWhatsapp /></span>
+                        </a>
+                        <a className='w-10 h-10 text-lg hover:opacity-70 rounded-xl flex items-center align-middle text-center justify-center ' href="http://" target="_blank" rel="noopener noreferrer">
+                            <span className='text-yellow-600 text-3xl'><BiSolidPhoneCall /></span>
+                        </a>
+                    </div>
                 </div>
                 <div className="flex-1 flex flex-col items-center gap-2 align-middle">
                     <h2 className='w-full text-lg font-light text-center underline'>Quick Links</h2>

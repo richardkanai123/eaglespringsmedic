@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
               {children}
             </Providers>
 
-            <ToastContainer />
+            <ToastContainer limit={1} />
           </main>
 
           <Footer />
