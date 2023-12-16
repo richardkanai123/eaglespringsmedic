@@ -74,7 +74,7 @@ const CreateBlog = () => {
                     title: blogTitle,
                     content: content,
                     created_at: serverTimestamp(),
-                    authour: "ESMC"
+                    author: "ESMC"
                 })
                     .then((data) => {
                         setIsUploadingContent(false)

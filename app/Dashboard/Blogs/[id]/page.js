@@ -1,4 +1,5 @@
 'use client'
+import BlogControls from '@/components/Dashboard/BlogComponents/BlogControls'
 import { blogsCollection, db } from '@/lib/Firebase'
 import {
     useQuery,
@@ -40,21 +41,24 @@ const BlogPost = ({ params }) => {
     if (data) {
         const markup = { __html: data.content };
         return (
-            <div className="container blog">
-                <div className="w-full block p-0 mb-3 relative object-cover min-h-[50vh]">
+            <div className="container blog relative">
+                <div className="w-full block p-0 mb-3 object-cover relative min-h-[50vh]">
                     <Image src={data.cover}
                         alt={data.title + data.id}
                         fill
                         style={{
                             objectFit: "cover",
-                            objectPosition: "cente"
+                            objectPosition: "center"
                         }}
                     />
+
                 </div>
-                <div className="w-full">
+                <div className="w-full relative pt-3">
+                    <BlogControls BlogID={params.id} published={data.published} />
                     <h1 className="text-2xl font-black">{data.title}</h1>
+                    <p className="text-base ">{data.author || data.authour}</p>
                 </div>
-                <div className='w-full leading-loose font-sans' dangerouslySetInnerHTML={markup}></div>
+                <div className='w-full font-sans' dangerouslySetInnerHTML={markup}></div>
             </div>
         )
     }

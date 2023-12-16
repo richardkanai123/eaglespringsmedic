@@ -49,8 +49,11 @@ const AdminBlogsHolder = () => {
     }
 
 
-    if (data)
+    if (data.length === 0) {
+        return <div>No Blogs found</div>
+    }
 
+    if (data.length > 0)
         return (
             <div className="w-full mx-auto p-0 flex gap-4 items-center justify-center align-middle flex-wrap">
                 {

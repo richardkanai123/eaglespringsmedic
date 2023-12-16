@@ -87,6 +87,10 @@
 
   list-style: decimal;
 }
+.blog strong{
+
+  font-weight: bold;
+}
 
 .blog li{
 padding:8px ;

@@ -1,16 +1,17 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
-import { Share, Trash2 } from 'lucide-react'
+import { DeleteIcon, DownloadCloud, Edit, Edit2Icon, Share, Trash2, TrashIcon, UploadCloudIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import BlogControls from './BlogControls'
 
 const BlogCard = ({ Blog, mode }) => {
-    const { id, title, cover, created_at, authour } = Blog
+    const { id, title, cover, created_at, authour, published } = Blog
     return (
         <Link className='w-full max-w-[400px] md:w-[320px] h-[320px]' href={mode === 'admin' ? `Blogs/${id}` : `${process.env.NEXT_PUBLIC_BASEURL}/blog/${id}`} >
-            <Card className={cn('h-full px-3 py-4')}>
+            <Card className={cn('h-full px-3 py-4 relative')}>
                 <CardTitle className={cn('mb-3 text-xl')}>{title}</CardTitle>
                 <CardContent className={cn('relative px-4  mx-auto w-[200px] h-[200px] object-cover flex flex-col gap-2')}>
                     <Image src={cover}
