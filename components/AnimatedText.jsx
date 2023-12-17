@@ -10,7 +10,7 @@ const AnimatedText = () => {
             sequence={[
                 // Same substring at the start will only be typed out once, initially
                 'We are Optimal!',
-                800, // wait 1s before replacing "Mice" with "Hamsters"
+                800,
                 'We are Compassionate!',
                 1000,
                 'We are Personalized!',
@@ -18,7 +18,10 @@ const AnimatedText = () => {
             ]}
             wrapper="span"
             speed={40}
-            style={{ display: 'inline-block' }}
+            style={{
+                display: 'inline-block',
+                color: 'inherit'
+            }}
             repeat={Infinity}
         />
     )

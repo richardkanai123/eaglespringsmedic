@@ -12,10 +12,10 @@ import { array } from 'zod'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import ErrorCard from '@/components/Dashboard/ErrorCard'
-import BlogCard from '@/components/Dashboard/BlogComponents/BlogCard'
+import BlogCard from './BlogCard'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
-const CustomerBlogLister = () => {
+const BlogsHolder = () => {
     const queryClient = useQueryClient()
     const { data, isError, isLoading, isFetching, error } = useQuery({
         queryKey: ['publishedBlogs'], queryFn: async () => {
@@ -50,12 +50,15 @@ const CustomerBlogLister = () => {
     if (data.length > 0)
 
         return (
-            <div className="w-full mx-auto p-0 flex gap-4 items-center justify-center align-middle flex-wrap">
-                {
-                    data?.map((blog) => (<BlogCard Blog={blog} key={blog.id} mode='viewer' />))
-                }
-            </div >
+            <ScrollArea className="w-full whitespace-nowrap rounded-md mx-auto">
+                <div className="flex w-max space-x-4 p-2 mx-auto">
+                    {
+                        data?.map((blog) => (<BlogCard Blog={blog} key={blog.id} mode='viewer' />))
+                    }
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea >
         )
 }
 
-export default CustomerBlogLister
+export default BlogsHolder

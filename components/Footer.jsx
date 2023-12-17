@@ -8,7 +8,7 @@ import { AiOutlineCopyrightCircle } from 'react-icons/ai'
 
 const Footer = () => {
     return (
-        <div className=' dark:bg-blue-800 bg-sky-700 text-white w-full flex flex-col items-center shadow-inner'>
+        <div className=' dark:bg-blue-800 bg-sky-700 text-white w-full flex flex-col items-center shadow-inner mt-4'>
             <section className='w-full flex flex-col md:flex-row gap-3  align-middle justify-center md:justify-around p-3'>
                 <div className="flex-1 flex  flex-col items-center gap-2 align-middle ">
                     <Image src="/favicon-removebg.png"

@@ -41,7 +41,7 @@ const BlogPost = ({ params }) => {
     if (data) {
         const markup = { __html: data.content };
         return (
-            <div className="container blog relative">
+            <div className="container px-2 blog relative">
                 <div className="w-full block p-0 mb-3 object-cover relative min-h-[50vh]">
                     <Image src={data.cover}
                         alt={data.title + data.id}

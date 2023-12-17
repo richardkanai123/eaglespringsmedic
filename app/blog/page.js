@@ -1,5 +1,4 @@
 import CustomerBlogLister from '@/components/CustomerBlogLister'
-import React from 'react'
 
 const Blog = () => {
     return (

@@ -1,6 +1,5 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { ModeToggle } from '@/components/modeToggleBtn'
 import Image from 'next/image'
 import { NavSheet } from '@/components/NavSheet'
@@ -10,8 +9,6 @@ import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Providers from './Providers'
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata = {
   title: 'Eagle Springs Medical Center Official Website',
   description: 'The official website to check out our services and book an appointment.',
@@ -47,7 +44,7 @@ export default function RootLayout({ children }) {
             </div>
           </header>
 
-          <main className='w-full flex flex-col mx-auto mb-2 scroll-smooth '>
+          <main className='container p-0 w-full flex flex-col mx-auto scroll-smooth'>
             <Providers>
               {children}
             </Providers>
