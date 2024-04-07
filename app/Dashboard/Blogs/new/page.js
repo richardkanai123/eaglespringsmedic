@@ -3,9 +3,7 @@ import CreateBlog from '@/components/Dashboard/BlogComponents/CreateBlog'
 
 const NewBlogPage = () => {
     return (
-        <>
-            <CreateBlog />
-        </>
+        <CreateBlog />
     )
 }
 

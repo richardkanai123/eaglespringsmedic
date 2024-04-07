@@ -8,7 +8,7 @@ import React from 'react'
 import BlogControls from './BlogControls'
 
 const BlogCard = ({ Blog, mode }) => {
-    const { id, title, cover, created_at, authour, published } = Blog
+    const { id, title, cover, created_at, author, published } = Blog
     return (
         <Link className='w-full max-w-[400px] md:w-[320px] h-[320px]' href={mode === 'admin' ? `Blogs/${id}` : `${process.env.NEXT_PUBLIC_BASEURL}/blog/${id}`} >
             <Card className={cn('h-full px-3 py-4 relative')}>
@@ -23,7 +23,7 @@ const BlogCard = ({ Blog, mode }) => {
                 </CardContent>
 
                 <CardFooter className={cn('w-full flex flex-col ')}>
-                    <p className='ml-auto text-sm italic text-left mt-3'>created at:{new Date((created_at.seconds * 1000) + ((created_at.nanoseconds) / 1000000000)).toLocaleDateString()} by: {authour}</p>
+                    <p className='ml-auto text-sm italic text-left mt-3'>created at:{new Date((created_at.seconds * 1000) + ((created_at.nanoseconds) / 1000000000)).toLocaleDateString()} by: {author}</p>
                 </CardFooter>
             </Card>
 

@@ -6,7 +6,7 @@ const Blog = () => {
 
             <div className="w-full flex flex-col gap-4">
                 <h1 className="text-xl font-bold">Blogs</h1>
-                <p className='text-muted text-base'>Our latest posts</p>
+                <p className='text-foreground dark:text-muted text-base'>Our latest posts</p>
             </div>
 
             <CustomerBlogLister />

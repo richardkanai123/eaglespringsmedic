@@ -20,7 +20,7 @@ const ServiceCard = ({ title, Description, Icon }) => {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <p className='text-left text-base'>{Description}</p>
+                <p className='text-left text-base font-medium'>{Description}</p>
             </CardContent>
             <CardFooter className={cn("self-end")} >
                 <Button asChild variant="link">

@@ -30,7 +30,7 @@ const CustomerBlogLister = () => {
     if (isLoading || isFetching) {
 
         return (
-            <div className="flex gap-2 flex-wrap w-full">
+            <div className="flex gap-2 flex-wrap w-full min-h-[70vh]">
                 Loading Blogs and News ....
 
             </div>

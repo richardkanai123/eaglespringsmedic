@@ -11,7 +11,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Router } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, uploadString, uploadBytes } from "firebase/storage";
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 
@@ -21,7 +21,7 @@ const CreateBlog = () => {
     const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
     const [user] = useAuthState(FireAuth)
-    const editor = useRef();
+    const editor = useRef(null);
     const [blogTitle, setBlogTitle] = useState('')
     const [blogCover, setblogCover] = useState([])
     const [content, setContent] = useState('')
@@ -29,7 +29,7 @@ const CreateBlog = () => {
     const Router = useRouter()
     const [coverUrl, setCoverURl] = useState('')
 
-    const UploadImageToStorage = (file) => {
+    const UploadImageToStorage = async (file) => {
         if (blogTitle === '' || content === '') {
             toast.error('Blog Must have a Title and content')
             return
@@ -38,30 +38,19 @@ const CreateBlog = () => {
             toast.error('Upload a cover photo for the blog')
             return
         }
+        setIsUploadingContent(true)
         const metadata = {
             contentType: file.type,
         };
         const storageRef = ref(storage, blogTitle);
-        const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-        setIsUploadingContent(true)
-        toast.info('Uploading .....')
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progressNumber = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                toast.update('uploading', {
-                    progress: progressNumber < 100 && progressNumber
-                })
-            },
-            (error) => {
-                toast.error(error.message)
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    AddNewBlog(downloadURL)
-                })
-            }
-        )
+        // const uploadTask = await uploadBytesResumable(storageRef, file, metadata);
+        // getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        //     AddNewBlog(downloadURL)
+        // })
+        await uploadBytes(storageRef, file, metadata)
+        const coverURL = await getDownloadURL(storageRef)
+        await AddNewBlog(coverURL)
+
     }
 
     const HandleChange = (e) => {
@@ -158,3 +147,5 @@ const CreateBlog = () => {
 }
 
 export default CreateBlog
+
+

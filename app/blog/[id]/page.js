@@ -27,7 +27,7 @@ const BlogPost = ({ params }) => {
 
     if (isFetching || isLoading) {
         return (
-            <div className="w-full animate-pulse text-xl font-black ">Loading....</div>
+            <div className="w-full animate-pulse text-xl font-black h-[70vh]">Loading....</div>
         )
     }
 
@@ -40,15 +40,13 @@ const BlogPost = ({ params }) => {
     if (data) {
         const markup = { __html: data.content };
         return (
-            <div className="container px-2 blog relative">
-                <div className="w-full block p-0 mb-3 object-cover relative min-h-[50vh]">
+            <div className="container px-2 object-cover blog relative">
+                <div className="mx-auto max-w-[800px] min-h-[60vh] md:min-h-[400px] object-center p-0 mb-3 relative object-scale-down  ">
                     <Image src={data.cover}
                         alt={data.title + data.id}
                         fill
-                        style={{
-                            objectFit: "cover",
-                            objectPosition: "center"
-                        }}
+
+                        className='w-full sm:object-cover object-center'
                     />
 
                 </div>

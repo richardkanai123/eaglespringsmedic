@@ -21,47 +21,47 @@ export default function Home() {
       <div
         className='bg-blend-overlay  bg-opacity-75 flex flex-col items-center w-full h-[80vh] relative object-cover mb-8'>
         <section className=' w-full h-full  bg-blend-overlay flex flex-col items-center align-middle justify-center'>
-          <p className='w-[70%]  mx-auto font-light text-sm text-left'>Your Health Partner</p>
-          <h1 className='text-4xl md:text-4xl lg:text-5xl w-full text-center text-sky-800  font-extrabold leading-snug md:leading-loose outline-none mb-4'>
+          <p className='w-[70%]  mx-auto font-semibold text-xs text-left animate-in slide-in-from-top-10 fade-in-0 transition-all ease-in duration-500'>Your Health Partner</p>
+          <h1 className='text-4xl md:text-4xl lg:text-5xl w-full text-center text-sky-800  font-extrabold leading-snug md:leading-loose outline-none mb-4 animate-in slide-in-from-top transition-all ease-in'>
             Eagle Springs Medical Center
           </h1>
 
-          <p className='text-xl font-semibold outline-none text-center my-4'>
+          <p className='text-xl font-semibold outline-none text-center my-4 transition-all ease-in'>
             <AnimatedText />
           </p>
 
-
           <aside className='w-full p-2 flex items-center align-middle justify-center gap-4 mt-2'>
-            <Button className='bg-lime-600 hover:bg-lime-950 text-base font-semibold ring-0 border-0 outline-none' asChild>
+            <Button className='bg-lime-600 hover:bg-lime-950 text-base font-semibold ring-0 border-0 outline-none animate-in slide-in-from-left duration-200 transition-all ease-in' asChild>
               <Link href="/booking">Book Appointment </Link>
             </Button>
 
-
-            <Button variant='link' className=' text-base font-semibold ring-0 border-0 outline-none' asChild >
+            <Button variant='link' className=' text-base underline  font-semibold ring-0 border-0 outline-none animate-in slide-in-from-right duration-100 hover:bg-sky-500 hover:rounded-md' asChild >
               <Link href="/services">Our Services</Link>
             </Button>
           </aside>
         </section>
       </div>
 
-
       <div className="flex w-full md:p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row h-[70vh] max-h-fit">
 
-        <section className='h-full w-full md:w-auto  flex-1 relative object-center  '>
-          <Image src={'/monitor.jpg'} fill style={{
-            objectPosition: "center",
-            objectFit: 'cover'
-          }} alt='monitor loading ' />
+        <section className='h-full w-full md:w-auto  flex-1 relative object-center'>
+          <Image src={'/monitor.jpg'}
+            fill style={{
+              objectPosition: "center",
+              objectFit: 'cover'
+            }}
+            className=' transition-all ease-in hover:zoom-in-125 duration-500  animate-in fade-in-8 animate-out '
+            sizes='width:100%'
+            alt='monitor loading ' />
         </section>
-        <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center  justify-center p-1 gap-2'>
-          <h2 className='text-2xl md:text-4xl text-center w-[75%] font-bold md:leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text '>About us</h2>
-          <p className='text-xl md:text-2xl font-[500] md:leading-snug text-justify leading-5 p-2'>
+        <section className='h-full w-full md:w-auto flex flex-col flex-1 items-center align-middle  justify-center p-1 gap-2'>
+          <h2 className='text-2xl md:text-4xl text-center w-[75%] font-bold md:leading-loose bg-gradient-to-l from-sky-800 via-cyan-400 to-green-500 text-transparent bg-clip-text px-2'>About us</h2>
+          <p className='text-xl font-[500] md:leading-snug text-justify leading-5 p-2 animate-in slide-in-from-right duration-300'>
             At Eagle Springs Medical Center, we are more than just a medical center; we are your beacon of hope and health in the heart of Gataka town. Our commitment to your well-being extends across all stages of life, from infancy to adulthood.
           </p>
         </section>
 
       </div>
-
 
       <div className="flex w-full p-4 justify-center gap-4 align-middle items-center flex-col md:flex-row min-h-[50vh]">
 
@@ -142,7 +142,7 @@ export default function Home() {
           </CardContent>
           <CardFooter>
             <Button asChild variant='primary' className='bg-lime-600 ring-0 outline-none hover:opacity-80'>
-              <a href='tel:2547194844555' className='flex items-center align-middle' >
+              <a href='tel:254797894402' className='flex items-center align-middle' >
                 Open Location
               </a>
             </Button>
@@ -165,13 +165,10 @@ export default function Home() {
         </div>
       </div>
 
-
-
       <div className="mt-3 w-full min-h-[40vh] max-h-fit flex p-4 justify-around gap-4 align-middle items-center flex-col border-b">
         <h1 className='text-xl font-bold text-center'>Our Recent Blogs and News</h1>
         <BlogsHolder />
       </div>
     </>
-
   )
 }
